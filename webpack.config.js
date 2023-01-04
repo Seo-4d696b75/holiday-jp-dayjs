@@ -6,8 +6,8 @@ module.exports = {
   mode: 'production',
   output: {
     path: path.resolve(__dirname, "umd"),
-    filename: "holiday-jp-dayjs.min.js",
-    library: 'holiday-jp-dayjs',
+    filename: "min.js",
+    library: 'holiday_jp_dayjs',
     libraryTarget: 'umd',
     globalObject: 'this',
   },
