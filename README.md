@@ -1,7 +1,7 @@
 # holiday-jp-dayjs
 
-
-![npm types](https://img.shields.io/npm/types/ekimemo-access-simulator.svg)
+![npm version](https://img.shields.io/npm/v/)
+![npm license](https://img.shields.io/npm/l/)
 ![test workflow](https://github.com/Seo-4d696b75/holiday-jp-dayjs/actions/workflows/test.yaml/badge.svg)
 
 Wrapper of [@holiday-jp/holiday_jp](https://www.npmjs.com/package/@holiday-jp/holiday_jp) with [Day.js](https://day.js.org/en/)
