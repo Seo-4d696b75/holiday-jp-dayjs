@@ -11,10 +11,8 @@ describe("between", () => {
   process.env.TZ = JST_TIMEZONE
 
   test.each(years)("year: %d", (year) => {
-    // ${year}-01-01T00:00:00
     const start = dayjs.tz(`${year}-01-01T00:00:00`, JST_TIMEZONE)
-    // ${year+1}-01-01T00:00:00
-    const end = dayjs.tz(`${year + 1}-01-01T00:00:00`, JST_TIMEZONE)
+    const end = dayjs.tz(`${year}-12-31T23:59:59`, JST_TIMEZONE)
   
     // this call destroys holidays[idx].date string => Date
     const expected = holiday_jp.between(
