@@ -22,9 +22,10 @@ export type DateLike =
   dayjs.Dayjs |
   string
 
+export const JST_TIMEZONE = "Asia/Tokyo" as const
 
-function formatFn(timezone: string): ((arg: DateLike) => string) {
-  return (arg) => dayjs(arg).tz(timezone).format("YYYY-MM-DD")
+function format(date: DateLike): string {
+  return dayjs.tz(date, JST_TIMEZONE).format("YYYY-MM-DD")
 }
 
 /**
@@ -33,29 +34,17 @@ function formatFn(timezone: string): ((arg: DateLike) => string) {
  * The given date will be formatted in "YYYY-MM-DD" with "Asia/Tokyo"(+0900) timezone,
  * then used as key value in searching for holidays.
  * 
+ * If ISO 8601 string given, parsed as "Asia/Tokyo" at first.
+ * 
  * @param date A Date-like value to be checked
  * @returns True if the given date is holiday otherwise false
  */
-export const isHoliday = isHolidayFn("Asia/Tokyo")
-
-/**
- * Creates a new function which checks the given date is holiday in Japan.
- * 
- * The difference with {@link isHoliday} is that; 
- * the given date will be formatted in "YYYY-MM-DD" with the specified timezone before searching.
- * 
- * @param timezone Which timezone the given date should be converted in
- * @returns True if the given date is holiday otherwise false
- */
-export function isHolidayFn(timezone: string): (date: DateLike) => boolean {
-  const format = formatFn(timezone)
-  return (arg) => {
-    const key = format(arg)
-    if (holidays[key]) {
-      return true
-    }
-    return false
+export function isHoliday(date: DateLike): boolean {
+  const key = format(date)
+  if (holidays[key]) {
+    return true
   }
+  return false
 }
 
 /**
