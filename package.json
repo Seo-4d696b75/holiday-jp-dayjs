@@ -4,7 +4,7 @@
   "description": "Wrapper of @holiday-jp/holiday_jp with Day.js",
   "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "npm run build-cjs && npm run build-umd",
     "build-cjs": "tsc",
     "build-umd": "webpack --config webpack.config.js"
