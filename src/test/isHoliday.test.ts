@@ -30,8 +30,6 @@ describe("isHoliday", () => {
     })
   }
 
-  process.env.TZ = "UTC"
-
   test("init", () => {
     expect(cases.length).toBe(365)
     expect(cases[0].date.format("YYYY-MM-DD")).toBe(`${year}-01-01`)
@@ -43,7 +41,7 @@ describe("isHoliday", () => {
     expect(isHoliday(c.date)).toBe(c.isHoliday)
     // Unix timestamp
     expect(isHoliday(c.date.valueOf())).toBe(c.isHoliday)
-    // Date in UTC
+    // Date
     expect(isHoliday(new Date(c.date.valueOf()))).toBe(c.isHoliday)
     // ISO 8601 string parsed as JST
     expect(isHoliday(c.date.format("YYYY-MM-DD"))).toBe(c.isHoliday)
