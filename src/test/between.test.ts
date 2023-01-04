@@ -6,10 +6,6 @@ describe("between", () => {
   // test with each year
   const years = Array(20).fill(2000).map((start,i) => start + i)
 
-  // holiday_jp depends on timezone
-  // https://github.com/holiday-jp/holiday_jp-js/blob/master/lib/format.js
-  process.env.TZ = JST_TIMEZONE
-
   test.each(years)("year: %d", (year) => {
     const start = dayjs.tz(`${year}-01-01T00:00:00`, JST_TIMEZONE)
     const end = dayjs.tz(`${year}-12-31T23:59:59`, JST_TIMEZONE)

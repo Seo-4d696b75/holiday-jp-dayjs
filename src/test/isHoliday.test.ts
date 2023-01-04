@@ -13,11 +13,6 @@ describe("isHoliday", () => {
   // ${year+1}-01-01T00:00:00
   const end = dayjs.tz(`${year + 1}-01-01T00:00:00`, JST_TIMEZONE)
 
-
-  // holiday_jp depends on timezone
-  // https://github.com/holiday-jp/holiday_jp-js/blob/master/lib/format.js
-  process.env.TZ = JST_TIMEZONE
-
   const cases: TestCase[] = []
 
   for (let d = start; d.isBefore(end); d = d.add(1, "day")) {
