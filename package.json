@@ -2,7 +2,7 @@
   "name": "holiday-jp-dayjs",
   "version": "0.0.1",
   "description": "Wrapper of @holiday-jp/holiday_jp with Day.js",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
