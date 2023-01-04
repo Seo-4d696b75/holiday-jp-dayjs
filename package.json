@@ -1,13 +1,15 @@
 {
   "name": "holiday-jp-dayjs",
   "version": "0.0.1",
-  "description": "Wrapper of @holiday-jp/holiday_jp with Day.js",
+  "description": "Wrapper of @holiday-jp/holiday_jp with Day.js, in fixed timezone 'Asia/Tokyo'",
   "main": "src/index.ts",
   "scripts": {
     "test": "jest",
+    "clean": "rm -rf lib umd",
     "build": "npm run build-cjs && npm run build-umd",
     "build-cjs": "tsc",
-    "build-umd": "webpack --config webpack.config.js"
+    "build-umd": "webpack --config webpack.config.js",
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "keywords": [
     "holiday",
