@@ -16,13 +16,11 @@ describe("between", () => {
     // ${year+1}-01-01T00:00:00
     const end = dayjs.tz(`${year + 1}-01-01T00:00:00`, JST_TIMEZONE)
   
+    // this call destroys holidays[idx].date string => Date
     const expected = holiday_jp.between(
       new Date(start.valueOf()),
       new Date(end.valueOf()),
-    ).map(h => ({
-      ...h,
-      date: dayjs.tz(h.date, JST_TIMEZONE).format("YYYY-MM-DD")
-    }))
+    )
 
     // dayjs.Dayjs
     expect(between(start, end)).toEqual(expected)
