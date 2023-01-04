@@ -5,7 +5,6 @@ import utc from 'dayjs/plugin/utc';
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
-dayjs.extend(isBetween)
 
 /**
  * Union type of multiple values expressing date-time.
@@ -58,18 +57,23 @@ export function isHoliday(date: DateLike): boolean {
  * 
  * The original implementation has some problems;  
  * - Calling `between` destroys `holidays` records, as mentioned in [issue 36](https://github.com/holiday-jp/holiday_jp-js/issues/36)
- * - Comparison of date is done precisely in milliseconds, so in point of date comparison, `start` is exclusive while `end` is inclusive.
+ * - Comparison of date is done precisely in milliseconds, so in point of date comparison, 
+ * `start` may be exclusive while `end` is inclusive.
  * 
  * @param start Start date to find holiday
  * @param end End date to find holiday
  * @returns The holidays list between start and end, or empty list if none.
  */
 export function between(start: DateLike, end: DateLike): Holiday<string>[] {
-  const startDate = dayjs(start)
-  const endDate = dayjs(end)
+  const after = format(start)
+  const before = format(end)
   return Object.keys(holidays)
-    .filter(key => dayjs.tz(key, "Asia/Tokyo").isBetween(startDate, endDate, "date", "[]"))
-    .map(key => holidays[key])
+    .filter(key => {
+      // new dayjs instance for each holiday too slow!
+      // this implementation use string comparison formatted in "YYYY-MM-DD"
+      // const d = dayjs.tz(key, JST_TIMEZONE)
+      return after <= key && key <= before
+    }).map(key => holidays[key])
 }
 
 type ReadonlyHolidays = Readonly<Record<string, Readonly<Holiday<string>>>>
