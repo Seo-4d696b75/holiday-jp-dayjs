@@ -1,6 +1,5 @@
-import { Holiday, holidays } from "@holiday-jp/holiday_jp";
+import { Holiday, holidays as _holidays } from "@holiday-jp/holiday_jp";
 import dayjs from "dayjs";
-import isBetween from 'dayjs/plugin/isBetween';
 import timezone from 'dayjs/plugin/timezone';
 import utc from 'dayjs/plugin/utc';
 
@@ -72,3 +71,21 @@ export function between(start: DateLike, end: DateLike): Holiday<string>[] {
     .filter(key => dayjs.tz(key, "Asia/Tokyo").isBetween(startDate, endDate, "date", "[]"))
     .map(key => holidays[key])
 }
+
+type ReadonlyHolidays = Readonly<Record<string, Readonly<Holiday<string>>>>
+
+/**
+ * All the holidays
+ * 
+ * This is a deep clone of the original record defined in @holiday-jp/holiday_jp
+ * 
+ * **Note** This record not changed when `between` called.  
+ * 
+ * As mentioned in [issue 36](https://github.com/holiday-jp/holiday_jp-js/issues/36),
+ * calling `between` destroys the original `holidays` records, but not this `holidays`.
+ *
+ */
+export const holidays: ReadonlyHolidays = Object.keys(_holidays).reduce((result, key) => {
+  result[key] = { ..._holidays[key] }
+  return result
+}, {} as Record<string, Holiday<string>>)
