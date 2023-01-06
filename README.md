@@ -59,3 +59,13 @@ isHoliday(date) // expected true, as "New Year's Day"
 ### Fixed Timezone
 
 In this library, all the date values are manipulated in "Asia/Tokyo" using [Day.js](https://day.js.org/en/), which is light and modern date-operation library 👍
+
+# 4. Update
+
+This library uses [data file of all the holiday](https://github.com/holiday-jp/holiday_jp-js/blob/master/lib/holidays.js) provided by @holiday-jp/holiday_jp. [GithubAction workflow](https://github.com/Seo-4d696b75/holiday-jp-dayjs/actions?query=workflow%3Aupdate-dependencies) runs periodically and checks updates of dependencies including @holiday-jp/holiday_jp.  
+
+[workflow file](./.github/workflows/update.yaml)  
+
+1. Check update of dependencies
+2. Publish PR if any update 
+3. Build & Publish to npm when PR merged
