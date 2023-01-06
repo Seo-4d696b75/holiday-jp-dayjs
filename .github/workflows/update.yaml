@@ -7,7 +7,7 @@ on:
     # 毎週土曜 06:00 JST
     - cron: '0 21 * * 5'
 jobs:
-  publish-to-npm:
+  update-dependencies:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -48,4 +48,4 @@ jobs:
           branch: 'auto-update'
           branch-suffix: 'timestamp'
           title: 'Bump dependencies version'
-          body: '[npm-check-updated](https://www.npmjs.com/package/npm-check-updates) bump version of dependencies.  This PR made by [create-pull-request](https://github.com/peter-evans/create-pull-request) GitHub action'
+          body: '[npm-check-updates](https://www.npmjs.com/package/npm-check-updates) bump version of dependencies.  This PR made by [create-pull-request](https://github.com/peter-evans/create-pull-request) GitHub action'
