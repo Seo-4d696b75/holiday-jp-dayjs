@@ -18,7 +18,7 @@ Wrapper of [@holiday-jp/holiday_jp](https://www.npmjs.com/package/@holiday-jp/ho
 ### In HTML
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/holiday-jp-dayjs@^0.0.1/umd/min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/holiday-jp-dayjs@^0.0.4/umd/min.js"></script>
 <script>
     let date = new Date("2010-09-20T00:00+0900")
     console.log(holiday_jp_dayjs.isHoliday(date)); // true; 敬老の日
