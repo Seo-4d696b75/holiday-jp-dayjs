@@ -28,10 +28,11 @@ jobs:
         run : npm install
         env :
           NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
-      - name: Build
-        run : npm run build --if-present
-        env :
-          NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+      # prepublishOnlyスクリプトが指定されている場合は不要
+      #- name: Build
+      #  run : npm run build --if-present
+      #  env :
+      #    NODE_AUTH_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
       - name: Publish
         run : npm publish --access=public
         env :
