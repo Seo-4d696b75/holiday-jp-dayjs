@@ -37,7 +37,7 @@ function format(date: DateLike): string {
  * Checks whether the given date is holiday in Japan.
  * 
  * The given date will be formatted in "YYYY-MM-DD" with "Asia/Tokyo"(+0900) timezone,
- * then used as key value in searching for holidays.
+ * then used as key when searching for holidays.
  * 
  * If ISO 8601 string given, parsed as "Asia/Tokyo" at first.
  * 
@@ -56,16 +56,8 @@ export function isHoliday(date: DateLike): boolean {
  * Finds all the holidays between the given dates
  * 
  * Each holiday "YYYY-MM-DD" will be compared with the given `start` and `end`
- * in unit of date, where all the date values are parsed in "Asia/Tokyo"(+0900) timezone. 
+ * in unit of date, where all the date values are manipulated "Asia/Tokyo".
  * Both `start` and `end` are inclusive. 
- * For more detail of date comparison, please see [Day.js - Is Between](https://day.js.org/docs/en/query/is-between)
- * 
- * **Note** This implementation is different from [the original one](https://github.com/holiday-jp/holiday_jp-js/blob/f9069506682270319295102f289c958530edfefd/lib/holiday_jp.js#L8-L21).
- * 
- * The original implementation has some problems;  
- * - Calling `between` destroys `holidays` records, as mentioned in [issue 36](https://github.com/holiday-jp/holiday_jp-js/issues/36)
- * - Comparison of date is done precisely in milliseconds, so in point of date comparison, 
- * `start` may be exclusive while `end` is inclusive.
  * 
  * @param start Start date to find holiday
  * @param end End date to find holiday
