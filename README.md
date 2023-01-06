@@ -9,8 +9,9 @@ Wrapper of [@holiday-jp/holiday_jp](https://www.npmjs.com/package/@holiday-jp/ho
 # 1. Features
 
 ✅ Gets holidays in Japan utilizing [@holiday-jp/holiday_jp](https://www.npmjs.com/package/@holiday-jp/holiday_j)  
-✅ Manipulates date values in fixed "Asia/Tokyo" (+0900) timezone    
-✅ Fixes [bug in original function](https://github.com/holiday-jp/holiday_jp-js/issues/36): `between`  
+✅ Checks the given date in fixed timezone "Asia/Tokyo", independent of running environment  
+✅ Fixes [bug of function: `between`](https://github.com/holiday-jp/holiday_jp-js/issues/36)  
+❌ Unable to load specific years only, but all the years automatically
 
 # 2. Install & Usage
 
@@ -44,9 +45,9 @@ console.log(days[0].name) // 敬老の日
 
 ### Timezone Affected
 
-The original implementation of [@holiday-jp/holiday_jp](https://www.npmjs.com/package/@holiday-jp/holiday_j) is affected by timezone. When run on an environment with timezone except "Asia/Tokyo", output may be ambiguous 😵
+The original implementation of [@holiday-jp/holiday_jp](https://www.npmjs.com/package/@holiday-jp/holiday_j) is affected by timezone. When run on an environment in timezone except "Asia/Tokyo", output may be ambiguous 😵
 
-The following simple code runs as expected in "Asia/Tokyo". But in other timezone, for example "UTC", the result is `false` because its local date-time is "2021-12-31T15:00:00+0000". What we want to know is whether the given datetime is holiday is Japan, NOT in UTC 🤣 
+The following simple code runs as expected in "Asia/Tokyo". But in other timezone, for example "UTC", the result is `false` because its local date-time is "2021-12-31T15:00:00+0000". What we want to know is whether the given datetime is holiday is Japan, not in UTC 🤣 
 
 ```js
 import { isHoliday } from "@holiday-jp/holiday_jp"
@@ -55,6 +56,6 @@ let date = new Date("2022-01-01T00:00:00+0900")
 isHoliday(date) // expected true, as "New Year's Day"
 ```
 
-### Timezone Fixed
+### Fixed Timezone
 
-In this library, all the date values are manipulated in fixed "Asia/Tokyo" timezone using [Day.js](https://day.js.org/en/), which is light and modern date-operation library 👍
+In this library, all the date values are manipulated in "Asia/Tokyo" using [Day.js](https://day.js.org/en/), which is light and modern date-operation library 👍
