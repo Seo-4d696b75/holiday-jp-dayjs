@@ -1,0 +1,53 @@
+name: update dependencies
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    # 毎週土曜 06:00 JST
+    - cron: '0 21 * * 5'
+jobs:
+  publish-to-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Enable Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.13.1'
+      - name: Install
+        run : npm i -D npm-check-updates
+      - name: Update dependencies version
+        # --target minor minorバージョンまで上げる
+        # --dep prod devDependenciesは無視
+        run : npx ncu -u --target minor --dep prod
+      - name: Check diff
+        id: diff
+        run: |
+          git add . 
+          echo "::set-output name=count::$(git diff --name-only | wc -l)"
+      - name: Install update
+        # 以降は差分がある場合のみ実行
+        if: steps.diff.outputs.count > 0
+        run : npm i
+      - name: Commit update 
+        # 更新差分を一旦コミット
+        if: steps.diff.outputs.count > 0
+        run: |
+          git config --global user.email "s.kaoru509@gmail.com"
+          git config --global user.name "Seo-4d696b75"
+          git add .
+          git commit -m "bump version of dependencies"
+      - name: Bump version
+        if: steps.diff.outputs.count > 0
+        run: npm version patch
+      - name: Create Pull Request
+        if: steps.diff.outputs.count > 0
+        uses: peter-evans/create-pull-request@v4
+        with:
+          base: 'main'
+          branch: 'auto-update'
+          branch-suffix: 'timestamp'
+          title: 'Bump dependencies version'
+          body: '[npm-check-updated](https://www.npmjs.com/package/npm-check-updates) bump version of dependencies.  This PR made by [create-pull-request](https://github.com/peter-evans/create-pull-request) GitHub action'
