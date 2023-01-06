@@ -24,7 +24,7 @@ jobs:
         run : npx ncu -u --target minor --dep prod
       - name: Check diff
         id: diff
-        run: echo "::set-output name=count::$(git diff --name-only | wc -l)"
+        run: echo "count=$(git diff --name-only | wc -l)" >> $GITHUB_OUTPUT
       - name: Install update
         # 以降は差分がある場合のみ実行
         if: steps.diff.outputs.count > 0
