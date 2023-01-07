@@ -1,6 +1,7 @@
 /**
  * @jest-environment puppeteer
  */
+import { join } from "path"
 
 describe("load umd from HTML", () => {
 
@@ -8,11 +9,19 @@ describe("load umd from HTML", () => {
     const output: string[] = []
     page.on("console", (m) => output.push(m.text()))
 
-    await page.goto(`file://${__dirname}/index.html`, {
+    console.log(__dirname)
+
+    const path = `file://${join(__dirname, "index.html")}`
+    console.log(path)
+
+    await page.goto(path, {
       waitUntil: "networkidle0"
     })
 
-    expect(output.length).toBeGreaterThan(0)
-    expect(output[0]).toBe("true")
+    console.log(output)
+    expect(output.length).toBe(3)
+    expect(output[0]).toBe("敬老の日")
+    expect(output[1]).toBe("true")
+    expect(output[2]).toBe("false")
   })
 })
