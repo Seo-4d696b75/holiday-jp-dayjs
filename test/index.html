@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" /> 
+    <script src="./../umd/min.js"></script>
+    <script>
+    var holidays = holiday_jp_dayjs.between(new Date('2010-09-14T00:00+0900'), new Date('2010-09-21T00:00+0900'));
+    console.log(holidays[0]['name'])
+    console.log(holiday_jp_dayjs.isHoliday(new Date('2010-09-20T00:00+0900')))
+    console.log(holiday_jp_dayjs.isHoliday(new Date('2010-09-21T00:00+0900')))
+    </script>
+  </head>
+  <body></body>
+</html>

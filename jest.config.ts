@@ -52,7 +52,19 @@ export default {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
+  
+  // Setup puppeteer 
+  // https://www.npmjs.com/package/jest-environment-puppeteer
+
+  // setup timezone + puppeteer
   globalSetup: "./test/global-setup.js",
+  //globalSetup: "jest-environment-puppeteer/setup",
+
+  // teardown puppeteer
+  globalTeardown: "jest-environment-puppeteer/teardown",
+
+  // specify by @jest-environment comment
+  // testEnvironment: "jest-environment-puppeteer"
 
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: undefined,
