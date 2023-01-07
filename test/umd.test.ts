@@ -8,7 +8,7 @@ describe("load umd from HTML", () => {
     const output: string[] = []
     page.on("console", (m) => output.push(m.text()))
     await page.goto(`file://${__dirname}/index.html`, {
-      waitUntil: "domcontentloaded"
+      waitUntil: "networkidle0"
     })
 
     expect(output.length).toBe(3)
