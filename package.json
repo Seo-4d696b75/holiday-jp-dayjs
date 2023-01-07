@@ -8,7 +8,9 @@
     "umd"
   ],
   "scripts": {
-    "test": "jest",
+    "test-unit": "jest --config jest.config.ts",
+    "test-e2e": "npm run build-umd && jest --config jest.config.e2e.ts",
+    "test": "npm run test-unit && npm run test-e2e",
     "clean": "rm -rf lib umd",
     "build": "npm run build-cjs && npm run build-umd",
     "build-cjs": "tsc",
