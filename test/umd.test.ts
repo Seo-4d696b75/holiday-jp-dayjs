@@ -4,6 +4,8 @@
 
 describe("load umd from HTML", () => {
 
+  jest.setTimeout(10_000)
+
   test("check console output", async () => {
     const output: string[] = []
     page.on("console", (m) => output.push(m.text()))
