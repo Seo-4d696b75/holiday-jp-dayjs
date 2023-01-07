@@ -1,6 +1,6 @@
 import * as holiday_jp from "@holiday-jp/holiday_jp"
 import dayjs from "dayjs"
-import { between, JST_TIMEZONE } from "../holiday"
+import { between, JST_TIMEZONE } from "../../src/holiday"
 
 describe("between", () => {
   // test with each year

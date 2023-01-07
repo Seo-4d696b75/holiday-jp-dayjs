@@ -52,7 +52,12 @@ export default {
   // forceCoverageMatch: [],
 
   // A path to a module which exports an async function that is triggered once before all test suites
-  globalSetup: "./test/unit/global-setup.js",
+  
+  // Setup puppeteer 
+  // https://www.npmjs.com/package/jest-environment-puppeteer
+  globalSetup: "jest-environment-puppeteer/setup",
+  globalTeardown: "jest-environment-puppeteer/teardown",
+  testEnvironment: "jest-environment-puppeteer",
 
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: undefined,
@@ -116,7 +121,7 @@ export default {
 
   // A list of paths to directories that Jest should use to search for files in
   roots: [
-    "./test/unit"
+    "./test/e2e"
   ],
 
   // Allows you to use a custom runner instead of Jest's default test runner

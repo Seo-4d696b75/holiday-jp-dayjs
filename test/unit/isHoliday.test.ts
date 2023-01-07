@@ -1,6 +1,6 @@
 import * as holiday_jp from "@holiday-jp/holiday_jp"
 import dayjs from "dayjs"
-import { isHoliday, JST_TIMEZONE } from "../index"
+import { isHoliday, JST_TIMEZONE } from "../../src/index"
 
 // check all the days in this year
 const year = 2022

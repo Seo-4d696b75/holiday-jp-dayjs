@@ -1,4 +1,4 @@
-import { between, isHoliday } from "../holiday"
+import { between, isHoliday } from "../../src/holiday"
 
 describe("敬老の日 2010", () => {
   test("isHoliday", () => {
