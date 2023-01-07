@@ -1,6 +1,6 @@
 {
   "name": "holiday-jp-dayjs",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Wrapper of @holiday-jp/holiday_jp with Day.js, in fixed timezone 'Asia/Tokyo'",
   "main": "src/index.ts",
   "files": [
