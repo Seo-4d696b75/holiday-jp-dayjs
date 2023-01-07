@@ -57,7 +57,7 @@ export default {
   // https://www.npmjs.com/package/jest-environment-puppeteer
 
   // setup timezone + puppeteer
-  globalSetup: "./test/global-setup.js",
+  globalSetup: "./test/unit/global-setup.js",
   //globalSetup: "jest-environment-puppeteer/setup",
 
   // teardown puppeteer
