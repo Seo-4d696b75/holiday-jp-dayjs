@@ -16,4 +16,5 @@ jobs:
         with:
           node-version: '16.13.1'
       - run: npm install
+      - run: ls test
       - run: npm run test
